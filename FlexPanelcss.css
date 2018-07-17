@@ -1,0 +1,83 @@
+html{
+    box-sizing: border-box;
+    background: #ffc600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+    font-weight: 200;
+}
+body{
+    margin: 0;
+}
+*, *:before,*:after{
+    box-sizing: inherit;
+}
+.panels{
+    min-height: 100vh;
+    overflow: hidden;
+    display:flex;
+}
+.panel{
+    background: violet;
+    box-shadow: inset 0 0 0 5px rgba(255,255,255,0,1);
+    color: white;
+    text-align: center;
+    align-items: center;
+    transition: 
+        font-size 0.7s cubic-bezier(0.13, 0.64, 0.43, 0.65),
+        flex-grow 0.7s cubic-bezier(0.13, 0.64, 0.43, 0.65),
+        background 0.2s;
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.panel1{
+    background-image: url(panel1.jpeg);
+}
+.panel2{
+    background-image: url(panel2.jpeg);
+}
+.panel3{
+    background-image: url(panel3.jpeg);
+}
+.panel4{
+    background-image: url(panel4.jpeg);
+}
+.panel5{
+    background-image: url(panel5.jpeg);
+}
+/* Flex Children */
+panel>*{
+    margin:0;
+    width:100%;
+    transition: transform 0.07s;
+    
+    flex: 1 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.panel>*:first-child{transform: translateY(-1000%);}
+.panel.open-active>*:first-child{transform: translateY(0);}
+.panel>*:last-child{transform: translateY(1000%);}
+.panel.open-active>*:last-child{transform: translateY(0);}
+.panel p{
+    text-transform: uppercase;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-shadow: 0 0 4px rgba(0,0,0,0.72), 0 0 14px rgba(0,0,0,0.45);
+    font-size: 1em;
+}
+.panel p:nth-child(2){
+    font-size: 2em;
+}
+.panel.open{
+    flex:5;
+    font-size: 20px;
+}
+.cta{
+    color: white;
+    text-decoration: none;
+}
