@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>
+    Drum Set
+</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+
+        function playSound(e)
+        {
+            const audio=document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            let key=document.querySelector(`.key[data-key="${e.keyCode}]`);
+            if(!audio)return;//stop function from running
+            audio.currentTime = 0;//rewind
+            audio.play();
+            keys.key.classList.add('playing');
+        }
+        function removeTransition(e){
+          if (e.propertyName !== 'transfrom')return;
+          this.classList.remove('playing')
+        }
+        const keys=document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener('transitionend',removeTransition));
+        window.addEventListener('keydown',playSound);
+    </script>
+</head>
+<body>
+
+<div class= "keys">
+    <div data-key="65" class="key">
+        <kbd>a</kbd>
+        <span class="sound">sound 1</span>
+    </div>
+    <div data-key="83" class="key">
+        <kbd>s</kbd>
+        <span class="sound">sound 2</span>
+    </div>
+    <div data-key="68" class="key">
+        <kbd>d</kbd>
+        <span class="sound">sound 3</span>
+    </div>
+    <div data-key="70" class="key">
+        <kbd>f</kbd>
+        <span class="sound">sound 4</span>
+    </div>
+    <div data-key="71" class="key">
+        <kbd>g</kbd>
+        <span class="sound">sound 5</span>
+    </div>
+</div>
+<audio data-key="65" src="sounds/alesis-d4fx-00.wav"></audio>
+<audio data-key="83" src="sounds/alesis-d4fx-16.wav"></audio>
+<audio data-key="68" src="sounds/alesis-d4fx-03.wav"></audio>
+<audio data-key="70" src="sounds/alesis-d4fx-04.wav"></audio>
+<audio data-key="71" src="sounds/alesis-d4fx-07.wav"></audio>
+</body>
+
+</html>

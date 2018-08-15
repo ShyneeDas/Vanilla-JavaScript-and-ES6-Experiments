@@ -1,0 +1,29 @@
+:root{
+    --base:#a09261;
+    --spacing: 10px;
+    --blur: 0;
+}
+img{
+    height: 200px;
+    width:200px;
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+}
+.hl{
+    color:var(--base);
+}
+body{
+    text-align: center;
+}
+body{
+    background: #193549;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+    font-size: 50px;
+
+}
+.controls{
+    margin-bottom: 50px;
+}
