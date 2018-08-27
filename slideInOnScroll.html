@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stylish Slide in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+<body><div class = "site-wrap">
+    <h1>Stylish Scroll Slide in</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies neque vitae odio suscipit egestas. In semper enim eu neque sodales, nec aliquet magna hendrerit. Suspendisse auctor, dolor et blandit tristique, massa justo pretium nunc, ac tincidunt tellus dolor sit amet velit. Suspendisse quis maximus ipsum, nec tristique ligula. Cras facilisis, libero in porttitor convallis, nunc quam facilisis enim, vel dictum purus ante sit amet nibh. Cras urna urna, semper varius maximus suscipit, dictum non diam. Ut pulvinar purus efficitur fermentum sodales. In gravida vehicula ornare.
+       </p>  <img src="panel1.jpeg" class="align-right slide-in">
+    In vitae libero posuere turpis consequat vulputate id in neque. Etiam maximus mattis ultrices. Nunc nec metus at ex euismod rutrum ut ut urna. Quisque pellentesque risus commodo dui finibus, ac rhoncus quam rhoncus. Pellentesque sodales ante a lobortis tincidunt. Suspendisse sagittis vestibulum lectus, id tincidunt elit cursus nec. Sed dapibus enim a tortor tempus, nec ullamcorper eros scelerisque. Ut condimentum augue enim, non consequat arcu lacinia a. Nulla sit amet dolor neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla a ultricies lacus. In pulvinar ultricies augue volutpat viverra. Vivamus eget vestibulum nisi, eu porttitor orci.  
+    <p>Suspendisse imperdiet eget tellus ac pulvinar. Aliquam faucibus est id efficitur cursus. Quisque arcu eros, molestie at semper sed, cursus at est. Aliquam vitae est leo. Suspendisse imperdiet libero ut risus convallis consequat. Suspendisse vitae nibh urna. Aliquam placerat ligula vitae elit pellentesque, vel facilisis massa tincidunt. Etiam non facilisis urna. Cras in est nec nulla hendrerit fringilla.
+   </p><img src="panel1.jpeg" class="align-left slide-in"> <p>
+    Suspendisse congue, arcu ac vestibulum elementum, mi tellus sollicitudin sapien, non congue sapien urna et nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas auctor euismod blandit. Curabitur nulla massa, tempor ac leo aliquam, convallis lacinia lacus. Quisque eros lectus, scelerisque fringilla odio vitae, malesuada dapibus sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut maximus magna ac elit euismod, in posuere sapien volutpat. Nulla ultricies sapien feugiat diam lobortis lobortis.
+     </p><img src="panel1.jpeg" class="align-right slide-in">  <p> 
+    Praesent mattis cursus arcu, in mattis lorem. Mauris rhoncus mollis lorem, sed maximus lorem ullamcorper facilisis. Praesent auctor urna a dictum gravida. Curabitur porttitor luctus ligula, eu mattis nibh suscipit vel. Morbi ut odio in ex hendrerit auctor. Etiam vitae ipsum eu ligula commodo porta. Pellentesque at magna eget purus porta placerat nec quis libero. Cras lacinia sed arcu ut pharetra. Fusce sapien augue, volutpat ac sodales nec, laoreet eu purus. Nullam facilisis eget augue non efficitur. Phasellus ut pellentesque turpis, eu elementum diam. Cras laoreet placerat libero id viverra. Fusce ipsum neque, fermentum non dapibus venenatis, faucibus vitae erat. Maecenas vel diam aliquam, volutpat nisi et, congue nisl. Aenean nec turpis ut turpis bibendum venenatis. Nunc mi arcu, efficitur blandit tincidunt ac, imperdiet egestas libero.</p>
+       </p></div>
+    <script>
+    function debounce(func, wait = 20, immediate = true){
+        var timeout;
+        return function(){
+            var context = this, args = arguments;
+            var later = function(){
+                timeout = null;
+                if(!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if(callNow) func.apply(context, args); 
+        };
+    };
+    const sliderImages = document.querySelectorAll('.slide-in');
+    function checkSlide(e){
+        console.log(window.scrollY);
+        sliderImages.forEach(sliderImage => {
+            const sliderInAt = (window.scrollY + window.innerHeight) -
+            sliderImage.height / 2;
+            console.log(sliderInAt);
+            const imageBottom = sliderImage.offsetTop + sliderImage.height;
+            const isHalfshown= sliderInAt > sliderImage.offsetTop;
+            const isNotScrolledPast = window.scrollY < imageBottom;
+            if(isHalfshown && isNotScrolledPast )
+            {
+                sliderImage.classList.add('active');
+            }
+            else{
+                sliderImage.classList.remove('active');
+            }
+        });
+        console.log(e);
+    }
+    window.addEventListener('scroll', debounce(checkSlide));
+    </script>
+    <style>
+        html{
+            box-sizing: border-box;
+            background: #ffc600;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: 200;
+        }
+        body{
+            margin: 0;
+        }
+        *, *::before, *::after{
+            box-sizing: inherit;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .site-wrap {
+            max-width: 700px;
+            margin : 100px auto;
+            background : wheat;
+            padding : 40px;
+            text-align: justify;
+        }
+        img{
+            height: 200px;
+            width: 200px;
+        }
+        .align-left {
+            float: left;
+            margin-right: 20px;
+        }
+        .align-right {
+            float: right;
+            margin-left: 20px;
+        }
+        .slide-in {
+            opacity: 0;
+            transition: all .3 s;
+        }
+        .align-left.slide-in {
+            transform: translateX(-30%) scale(0.95);
+        }
+        .align-right.slide-in {
+            transform: translateX(30%) scale(0.95);
+        }
+        .slide-in.active{
+            opacity: 1;
+            transform: translateX(0%) scale(1);
+        }
+        
+    </style>
+</body>
+</html>
